@@ -1,0 +1,73 @@
+{% extends 'layouts/base-fullscreen.html' %}
+
+{% block content %}
+<style>
+
+  .bg-custom-primary {
+    background-color: #6bade3 !important;
+  }
+
+  .btn-custom-primary {
+    background-color: #97b5ce !important;
+    border-color: #497ba4 !important;
+    color: rgb(14, 13, 13) !important;
+  }
+
+  .btn-custom-primary:hover {
+    background-color: #5aa2da !important;
+    border-color: #5aa2da !important;
+  }
+
+  /* Penegasan input */
+  .form-control {
+    border: 1px solid #616464;
+    box-shadow: 0 0 4px rgba(104, 179, 240, 0.4);
+    padding: 0.6rem 0.75rem;
+    font-weight: 500;
+  }
+
+  .form-control:focus {
+    border-color: #368dcf;
+    box-shadow: 0 0 6px rgba(54, 141, 207, 0.6);
+  }
+</style>
+
+<div class="container mt-7" >
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg rounded">
+        <div class="card-header bg-custom-primary text-white">
+          <h5 class="mb-0">Form Data Diri</h5>
+        </div>
+        <div class="card-body">
+          <form method="POST">
+            <input type="hidden" name="penyakit_id" value="{{ session['penyakit_id'] }}">
+
+            <div class="mb-3">
+              <label for="nama" class="form-label">Nama</label>
+              <input type="text" name="nama" id="nama" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="umur" class="form-label">Umur</label>
+              <input type="number" name="umur" id="umur" class="form-control" required min="0">
+            </div>
+
+            <div class="mb-3">
+              <label for="anak_ke" class="form-label">Anak ke</label>
+              <input type="number" name="anak_ke" id="anak_ke" class="form-control" required min="1">
+            </div>
+
+            <div class="mb-3">
+              <label for="usia_kehamilan" class="form-label">Usia Kehamilan (minggu)</label>
+              <input type="number" name="usia_kehamilan" id="usia_kehamilan" class="form-control" required min="1" max="42">
+            </div>
+
+            <button type="submit" class="btn btn-custom-primary w-100">Lanjut</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

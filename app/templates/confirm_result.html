@@ -1,0 +1,77 @@
+{% extends 'layouts/base-fullscreen.html' %}
+{% block content %}
+<style>
+  .bg-custom {
+    background-color: #6bade3 !important;
+    color: white;
+  }
+
+  .btn-custom {
+    background-color: #6bade3;
+    color: white;
+    border: none;
+  }
+
+  .btn-custom:hover {
+    background-color: #5aa1d8;
+    color: white;
+  }
+
+  .alert-custom {
+    background-color: #d7ebf9;
+    color: #065b89;
+    border-color: #6bade3;
+  }
+
+  .badge-custom {
+    background-color: #6bade3;
+    color: white;
+  }
+</style>
+
+<div class="container mt-7">
+  {% if result.status == 'tidak terpenuhi' %}
+    <div class="alert alert-custom text-center">
+      <h4>Hasil Diagnosa Anda Memiliki Gejala {{ result.penyakit_nama }}</h4>
+      <p>Gejala yang Anda jawab (skala > 0): 
+        {% if result.gejala_terjawab %}
+          {{ result.gejala_terjawab | join(', ') }}
+        {% else %}
+          (Tidak ada gejala)
+        {% endif %}
+      </p>
+      <a href="{{ url_for('main.pilih_penyakit') }}" class="btn btn-secondary mt-3">
+        Pilih Penyakit Lain
+      </a>
+    </div>
+  {% else %}
+    <div class="alert alert-custom text-center">
+      <h4>Hasil Diagnosa Anda Memiliki Gejala {{ result.penyakit_nama }}</h4>
+      <p>Klasifikasi: 
+        {% if result.kelas == 'Ringan' %}
+          <span class="badge badge-custom">{{ result.kelas }}</span></br>
+        {% elif result.kelas == 'Sedang' %}
+          <span class="badge bg-warning">{{ result.kelas }}</span>
+        {% else %}
+          <span class="badge bg-danger">{{ result.kelas }}</span>
+        {% endif %}
+      </p>
+
+      {% if result.solusi_list %}
+      <div class="mt-4 text-start">
+        <h5>Disarankan:</h5>
+        <ul>
+          {% for solusi in result.solusi_list %}
+            <li>{{ solusi.solusi }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <a href="{{ url_for('main.pilih_penyakit') }}" class="btn btn-custom mt-3">
+        Selesai
+      </a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

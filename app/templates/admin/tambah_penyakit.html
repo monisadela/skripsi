@@ -1,0 +1,139 @@
+{% extends 'layouts/base-fullscreen.html' %}
+
+{% block title %}Tambah Penyakit{% endblock %}
+
+{% block content %}
+<style>
+    :root {
+        --main-color: #6bade3;
+        --main-hover: #569dd7;
+        --text-light: #fff;
+    }
+
+    h3, h4 {
+        color: var(--main-color);
+    }
+
+    .btn-primary {
+        background-color: var(--main-color);
+        border-color: var(--main-color);
+        color: var(--text-light);
+        font-weight: 600;
+    }
+
+    .btn-primary:hover {
+        background-color: var(--main-hover);
+        border-color: var(--main-hover);
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        color: white;
+        font-weight: 600;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5c636a;
+        border-color: #565e64;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+        color: white;
+        font-weight: 600;
+    }
+
+    .btn-danger:hover {
+        background-color: #bb2d3b;
+        border-color: #b02a37;
+    }
+
+    .form-label {
+        color: var(--main-color);
+        font-weight: 600;
+    }
+
+    .form-control {
+        border: 2px solid #ced4da;
+        border-radius: 6px;
+        padding: 10px 14px;
+        font-size: 1rem;
+        font-weight: 500;
+        box-shadow: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .form-control:focus {
+        border-color: var(--main-color);
+        box-shadow: 0 0 0 0.2rem rgba(107, 173, 227, 0.25);
+        outline: none;
+    }
+
+    .table th {
+        background-color: var(--main-color);
+        color: white;
+    }
+</style>
+
+<div class="container mt-7">
+    <h3 class="mb-4">Tambah Penyakit Baru</h3>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="id" class="form-label">ID Penyakit (misal: P01)</label>
+            <input type="text" class="form-control" id="id" name="id" required>
+        </div>
+        <div class="mb-3">
+            <label for="nama" class="form-label">Nama Penyakit</label>
+            <input type="text" class="form-control" id="nama" name="nama" required>
+        </div>
+        <div class="mb-3">
+            <label for="deskripsi" class="form-label">Deskripsi</label>
+            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="threshold" class="form-label">Threshold</label>
+            <input type="number" step="0.1" class="form-control" id="threshold" name="threshold" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+        <a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary">Batal</a>
+    </form>
+
+    <hr class="my-5">
+
+    <h4>Daftar Penyakit</h4>
+    <table class="table table-bordered table-striped mt-3">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>ID</th>
+                <th>Nama</th>
+                <th>Deskripsi</th>
+                <th>Threshold</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in semua_penyakit %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ p.id }}</td>
+                <td>{{ p.nama }}</td>
+                <td>{{ p.deskripsi }}</td>
+                <td>{{ p.threshold }}</td>
+                <td>
+                    <form action="{{ url_for('admin.hapus_penyakit', id=p.id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?')">
+                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="text-center">Belum ada data penyakit.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends 'layouts/base-fullscreen.html' %}
+
+{% block title %}Detail Diagnosa{% endblock %}
+
+{% block content %}
+<style>
+  /* Tampilan normal (layar) */
+  body {
+    background-color: #f9fcff;
+    color: #333;
+  }
+
+  h3.text-primary {
+    color: #6bade3 !important;
+  }
+
+  table.table-bordered {
+    border: 2px solid #6bade3;
+  }
+
+  table.table-bordered th {
+    background-color: #6bade3;
+    color: white;
+    border: 1px solid #6bade3;
+  }
+
+  table.table-bordered td {
+    border: 1px solid #6bade3;
+  }
+
+  .btn-success {
+    background-color: #6bade3;
+    border-color: #6bade3;
+  }
+
+  .btn-success:hover {
+    background-color: #5aa2d8;
+    border-color: #5aa2d8;
+  }
+
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 1cm;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-size: 12pt;
+      line-height: 1;
+      background: white;
+      color: black;
+    }
+
+    .container {
+      padding: 0;
+      margin: 0 auto;
+    }
+
+    table {
+      display: inline-table;
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: auto;
+    }
+
+    th, td {
+      border: 1px solid black !important;
+      padding: 8px !important;
+      color: black !important;
+      background-color: white !important;
+    }
+
+    /* Sembunyikan elemen navigasi */
+    .btn-print, .btn-back,
+    .navbar, .sidebar, .footer, .header,
+    .breadcrumb, .page-header {
+      display: none !important;
+    }
+  }
+</style>
+
+<div class="container mt-7" style="margin: auto;">
+  <h3 class="text-primary mb-4">Detail Diagnosa</h3>
+
+  <table class="table table-bordered">
+    <tr><th>Nama</th><td>{{ diagnosa.nama }}</td></tr>
+    <tr><th>Umur</th><td>{{ diagnosa.umur }}</td></tr>
+    <tr><th>Usia Kehamilan</th><td>{{ diagnosa.usia_kehamilan }}</td></tr>
+    <tr><th>Anak Ke</th><td>{{ diagnosa.anak_ke }}</td></tr>
+    <tr><th>Tanggal</th><td>{{ diagnosa.tanggal.strftime('%d-%m-%Y %H:%M:%S') }}</td></tr>
+    <tr><th>Penyakit</th><td>{{ diagnosa.penyakit.nama }}</td></tr>
+    <tr><th>Skala</th><td>{{ diagnosa.skala.kelas }}</td></tr>
+    <tr><th>Gejala yang di alami</th><td>
+      <ul style="padding-left: 1.2rem;">
+        {% for gejala in gejala_nama_list %}
+        <li>{{ gejala.nama }}</li>
+      {% else %}
+        <li><em>Tidak ada gejala ditemukan.</em></li>
+      {% endfor %}
+      </ul>
+    </td></tr>
+    <
+  </table>
+
+  <div class="mt-3">
+    <a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary btn-back">Kembali</a>
+    <button onclick="window.print()" class="btn btn-success btn-print">Print</button>
+  </div>
+</div>
+{% endblock %}

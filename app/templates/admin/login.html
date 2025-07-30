@@ -1,0 +1,75 @@
+{% extends 'layouts/base-fullscreen.html' %}
+
+{% block title %}Login Admin{% endblock %}
+
+{% block content %}
+<style>
+  .text-primary {
+    color: #6bade3 !important;
+  }
+
+  .btn-custom {
+    background-color: #6bade3;
+    color: white;
+    border: none;
+  }
+
+  .btn-custom:hover {
+    background-color: #5aa1d8;
+    color: white;
+  }
+
+  .form-control:focus {
+    border-color: #6bade3;
+    box-shadow: 0 0 0 0.2rem rgba(107, 173, 227, 0.25);
+  }
+</style>
+
+<div class="container mt-7">
+
+<h3 class="text-center mb-4 text-primary">Login Admin</h3>
+
+<form method="POST" class="needs-validation" novalidate>
+  <div class="mb-3">
+    <label for="username" class="form-label">👤 Username</label>
+    <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username" required>
+    <div class="invalid-feedback">Username wajib diisi.</div>
+  </div>
+
+  <div class="mb-4">
+    <label for="password" class="form-label">🔒 Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" required>
+    <div class="invalid-feedback">Password wajib diisi.</div>
+  </div>
+
+  <button type="submit" class="btn btn-custom w-100">🔓 Masuk</button>
+</form>
+</div>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert alert-danger mt-4 text-center">
+      {% for message in messages %}
+        <p class="mb-0">{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<script>
+// Validasi Bootstrap 5
+(() => {
+  'use strict';
+  const forms = document.querySelectorAll('.needs-validation');
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+})();
+</script>
+{% endblock %}

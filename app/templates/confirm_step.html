@@ -1,0 +1,58 @@
+{% extends 'layouts/base-fullscreen.html' %}
+{% block content %}
+<style>
+  /* Warna primer kustom dengan #6bade3 */
+  .btn-outline-custom {
+    color: #6bade3;
+    border-color: #103c60;
+  }
+
+  .btn-outline-custom:hover {
+    background-color: #457fae;
+    color: white;
+  }
+
+  .text-custom {
+    color: #0d538d;
+  }
+
+  h5 {
+    color: #043155;
+    font-weight: 600;
+  }
+</style>
+
+<div class="container mt-7">
+  <div class="text-center">
+    <h5>({{ step }}/{{ total }}) Pertanyaan Gejala</h5>
+    <p class="lead">Apakah Anda Merasakan ?</p>
+  </div>
+
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h4 class="text-custom">{{ gejala.nama }}</h4>
+      </div>
+    </div>
+
+    <form method="POST">
+      <div class="d-grid gap-3">
+        <label class="form-label">Pilih salah satu:</label>
+        <div class="d-flex justify-content-center gap-2">
+          <button type="submit" name="jawab" value="0" class="btn btn-outline-custom">
+            <small>Tidak sama sekali</small>
+          </button>
+          <button type="submit" name="jawab" value="1" class="btn btn-outline-custom">
+            <small>Jarang</small>
+          </button>
+          <button type="submit" name="jawab" value="2" class="btn btn-outline-custom">
+            <small>Sering</small>
+          </button>
+          <button type="submit" name="jawab" value="3" class="btn btn-outline-custom">
+            <small>Selalu</small>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+{% endblock %}

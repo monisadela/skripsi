@@ -1,0 +1,63 @@
+{% extends 'layouts/base-fullscreen.html' %}
+{% block content %}
+<style>
+  .badge-custom {
+    background-color: #6bade3;
+    color: white;
+  }
+
+  .alert-custom {
+    background-color: #d7ebf9;
+    color: #065b89;
+    border-color: #6bade3;
+  }
+
+  .btn-custom {
+    background-color: #6bade3;
+    color: white;
+    border: none;
+  }
+
+  .btn-custom:hover {
+    background-color: #5aa1d8;
+    color: white;
+  }
+</style>
+
+<div class="container mt-7">
+  <h5>Hasil Diagnosa:</h5>
+  {% if terbaik %}
+    {% set result = terbaik %}
+
+    <ul class="list-group mt-3">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ result.penyakit_nama }}
+        {% if result.kelas == 'Ringan' %}
+          <span class="badge badge-custom">{{ result.kelas }}</span>
+        {% elif result.kelas == 'Sedang' %}
+          <span class="badge bg-warning">{{ result.kelas }}</span>
+        {% else %}
+          <span class="badge bg-danger">{{ result.kelas }}</span>
+        {% endif %}
+      </li>
+    </ul>
+
+    {% if result.solusi_list %}
+    <div class="mt-4 text-start">
+      <h5>Disarankan:</h5>
+      <ul>
+        {% for solusi in result.solusi_list %}
+          <li>{{ solusi.solusi }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  {% else %}
+    <div class="alert alert-custom mt-3">
+      Tidak ditemukan penyakit berdasarkan gejala yang dipilih.
+    </div>
+  {% endif %}
+
+  <a href="{{ url_for('main.index') }}" class="btn btn-custom mt-4">Kembali</a>
+</div>
+{% endblock %}

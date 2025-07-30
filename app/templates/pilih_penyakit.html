@@ -1,0 +1,41 @@
+{% extends 'layouts/base-fullscreen.html' %}
+{% block content %}
+<style>
+  /* Warna primer kustom */
+  .btn-outline-custom {
+    color: #0288d1;
+    border-color: #0288d1;
+  }
+
+  .btn-outline-custom:hover {
+    background-color: #0288d1;
+    color: white;
+  }
+
+  .btn-secondary {
+    background-color: #cccccc;
+    border-color: #cccccc;
+  }
+
+  h5 {
+    color: #0288d1;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+</style>
+
+<div class="container mt-7">
+<h5>Pilih penyakit yang ingin di diagnosa :</h5>
+<ul class="list-group">
+    {% for p in penyakit %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ p.nama }}
+        <a href="{{ url_for('main.diri', penyakit_id=p.id, step=0) }}" class="btn btn-sm btn-outline-custom">Konfirmasi Gejala</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{{ url_for('main.index') }}" class="btn btn-secondary mt-3">Kembali</a>
+</div>
+{% endblock %}
+

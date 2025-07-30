@@ -1,0 +1,181 @@
+{% extends 'layouts/base-fullscreen.html' %}
+
+{% block content %}
+<!-- Background yang lembut -->
+<style>
+  body {
+    background: linear-gradient(to bottom, #f8f9fc, #e3f2fd);
+  }
+
+  /* Styling card Pilih Metode Diagnosa */
+  .diagnosa-card {
+    background: #e3f2fd; /* biru muda lembut */
+    border-left: 8px solid #6688a4; /* biru cerah */
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.15);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .diagnosa-card:hover {
+    box-shadow: 0 12px 30px rgba(0, 123, 255, 0.3);
+  }
+
+  .diagnosa-card h4 {
+    color: #0d47a1;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .diagnosa-card p {
+    color: #37474f;
+    font-size: 1rem;
+  }
+
+  /* Tombol Utama */
+  .diagnosa-btn {
+    font-weight: 600;
+    background-color: #ffffff;
+    color: #0288d1 !important;
+    border: 2px solid #0288d1;
+    padding: 14px 20px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+  }
+
+  .diagnosa-btn:hover {
+    background-color: #e1f5fe;
+    color: #01579b !important;
+    transform: translateY(-2px);
+  }
+
+  /* Tombol primer (biru cerah) */
+  .diagnosa-btn-primary {
+    background-color: #2196f3;
+    color: #ffffff !important;
+    border-color: #2196f3;
+  }
+
+  .diagnosa-btn-primary:hover {
+    background-color: #1769aa;
+    border-color: #1769aa;
+    box-shadow: 0 6px 15px rgba(33, 150, 243, 0.5);
+  }
+
+  /* Tombol sekunder (biru muda kehijauan) */
+  .diagnosa-btn-secondary {
+    background-color: #e0f2f1;
+    color: #2a8178 !important;
+    border: 2px solid #26a69a;
+  }
+
+  .diagnosa-btn-secondary:hover {
+    background-color: #b2dfdb;
+    color: #004d40 !important;
+    box-shadow: 0 6px 15px rgba(38, 166, 154, 0.3);
+  }
+
+  .diagnosa-btn i {
+    font-size: 1.5rem;
+  }
+</style>
+
+
+
+<div class="container mt-7 mb-5">
+
+  <!-- INFORMASI SISTEM -->
+<div class="card shadow-lg p-4 mb-4" style="background-color: #e1f5fe; border-left: 6px solid #0288d1;" id="informasi-sistem">
+  <h4 class="text-center mb-3 text-dark">
+    <i class="material-icons text-primary"></i> Tentang Sistem
+  </h4>
+
+  <img src="../static/assets/img/ibu.jpg" alt="Mental Health Support" class="img-fluid d-block mx-auto mb-4" style="max-height: 300px;">
+
+  <p class="text-justify text-dark">
+    Sistem ini dirancang untuk membantu mendeteksi potensi gangguan mental pada ibu hamil, termasuk stres, kecemasan, dan depresi.
+    Melalui proses tanya jawab berbasis sistem pakar, pengguna akan mendapatkan hasil klasifikasi kondisi mental berdasarkan gejala yang dirasakan.
+    Sistem ini tidak menggantikan diagnosis profesional, namun dapat digunakan sebagai alat bantu awal untuk mengenali kondisi psikologis.
+  </p>
+
+  <h4 class="text-center">
+    <i class="material-icons me-2">psychology</i>Ayo diagnosa kesehatan mental Anda!
+  </h4>
+
+  <p class="text-center mb-4">Silakan pilih salah satu metode diagnosa yang ingin Anda gunakan.</p>
+  
+  <div class="d-grid gap-3 col-10 col-md-6 mx-auto">
+    <a href="{{ url_for('main.forward_step', step=0) }}" class="btn diagnosa-btn diagnosa-btn-primary btn-lg d-flex align-items-center justify-content-center gap-2">
+      <i class="material-icons">insights</i> Diagnosa Berdasarkan Gejala
+    </a>
+    <a href="{{ url_for('main.pilih_penyakit') }}" class="btn diagnosa-btn diagnosa-btn-secondary btn-lg d-flex align-items-center justify-content-center gap-2">
+      <i class="material-icons">medical_services</i> Diagnosa Berdasarkan Penyakit
+    </a>
+  </div>
+
+</div>
+
+
+  <!-- INFORMASI PENYAKIT MENTAL -->
+  <div class="card shadow-lg p-4 mb-4" style="background-color: #e1f5fe; border-left: 6px solid #0288d1;" id="informasi-penyakit">
+    <h4 class="text-center mb-4 text-dark">
+      <i class="material-icons text-danger">info</i> Informasi Penyakit Mental
+    </h4>
+
+    <div class="accordion" id="accordionPenyakit">
+      
+      <!-- STRES -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingStress">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStress" aria-expanded="true" aria-controls="collapseStress">
+            <i class="material-icons text-warning me-2">warning</i> Stres
+          </button>
+        </h2>
+        <div id="collapseStress" class="accordion-collapse collapse show" aria-labelledby="headingStress" data-bs-parent="#accordionPenyakit">
+          <div class="accordion-body text-dark">
+            <p><strong>Stres</strong> adalah respons tubuh terhadap tekanan atau tuntutan dari lingkungan. Stres dapat disebabkan oleh masalah pekerjaan, keluarga, keuangan, atau kondisi lingkungan yang tidak nyaman. Gejala umum meliputi ketegangan, sulit tidur, dan perubahan suasana hati.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- KECEMASAN -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingKecemasan">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseKecemasan" aria-expanded="false" aria-controls="collapseKecemasan">
+            <i class="material-icons text-info me-2">psychology_alt</i> Kecemasan
+          </button>
+        </h2>
+        <div id="collapseKecemasan" class="accordion-collapse collapse" aria-labelledby="headingKecemasan" data-bs-parent="#accordionPenyakit">
+          <div class="accordion-body text-dark">
+            <p><strong>Kecemasan</strong> adalah perasaan takut atau khawatir yang berlebihan terhadap situasi tertentu. Orang dengan gangguan kecemasan sering merasa gelisah, mudah panik, atau mengalami serangan jantung palsu. Jika tidak ditangani, kecemasan bisa mengganggu aktivitas sehari-hari.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEPRESI -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingDepresi">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDepresi" aria-expanded="false" aria-controls="collapseDepresi">
+            <i class="material-icons text-dark me-2">mood_bad</i> Depresi
+          </button>
+        </h2>
+        <div id="collapseDepresi" class="accordion-collapse collapse" aria-labelledby="headingDepresi" data-bs-parent="#accordionPenyakit">
+          <div class="accordion-body text-dark">
+            <p><strong>Depresi</strong> adalah gangguan suasana hati yang ditandai dengan perasaan sedih berkepanjangan, kehilangan minat, dan kurangnya energi. Depresi dapat mempengaruhi cara berpikir, perasaan, dan berperilaku seseorang. Penanganan bisa melalui terapi psikologis dan pengobatan.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Pilih Metode Diagnosa -->
+  <!-- <div class="diagnosa-card shadow-lg mt-3" id="diagnosa">
+      </div> -->
+</div>
+{% endblock %}
