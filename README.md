@@ -28,6 +28,16 @@ Skripsi ini mengembangkan aplikasi berbasis web yang dirancang untuk membantu me
 
 ---
 
+
+## 👩‍🎓 Informasi Penulis
+text
+Nama       : Monisa Dela  
+NIM        : 210170184  
+Program Studi : Teknik Informatika  
+Fakultas   : Teknik  
+Universitas: Malikussaleh
+
+
 ## 🚀 Cara Menjalankan Aplikasi
 
 1. **Clone repositori**
@@ -40,11 +50,3 @@ venv\Scripts\activate         # Windows
 pip install -r requirements.txt
 python run.py
 ---
-
-## 👩‍🎓 Informasi Penulis
-text
-Nama       : Monisa Dela  
-NIM        : 210170184  
-Program Studi : Teknik Informatika  
-Fakultas   : Teknik  
-Universitas: Malikussaleh
