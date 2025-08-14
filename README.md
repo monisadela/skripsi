@@ -30,7 +30,6 @@ Skripsi ini mengembangkan aplikasi berbasis web yang dirancang untuk membantu me
 
 
 ## 👩‍🎓 Informasi Penulis
-text
 Nama       : Monisa Dela  
 NIM        : 210170184  
 Program Studi : Teknik Informatika  
